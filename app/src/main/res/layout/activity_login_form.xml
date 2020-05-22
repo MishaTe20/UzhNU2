@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
+    tools:context="com.example.mishate.uznuintime.com.example.mishate.InTime.login_form">
+
+    <EditText
+        android:layout_width="250dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="E-mail"
+        android:textSize="16dp"
+        android:drawableLeft="@drawable/ic_action_mail"
+        android:background="#fff200"
+        android:layout_marginBottom="180dp"
+        android:id="@+id/logemail_field"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Вхід"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:translationZ="4dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/logpass_field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:textSize="24dp"
+
+        android:paddingTop="15dp"
+        android:textColor="#ffffff"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/btn_log"
+        android:layout_width="230dp"
+        android:textAllCaps="false" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:textSize="16dp"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:hint="Password"
+        android:background="#fff200"
+        android:layout_marginTop="60dp"
+        android:id="@+id/logpass_field"
+        android:layout_alignTop="@+id/logemail_field"
+        android:layout_alignStart="@+id/logemail_field" />
+
+    <TextView
+        android:text="Зареєструватися тут?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:id="@+id/reg_here"
+        android:textSize="14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
+
+    <ImageView
+        app:srcCompat="@drawable/uzhnu_logo"
+        android:id="@+id/imageView2"
+        android:layout_width="250dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/logemail_field" />
+
+</RelativeLayout>
