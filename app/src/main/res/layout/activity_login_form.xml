@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/background"
-    tools:context="com.example.mishate.uznuintime.com.example.mishate.InTime.login_form">
+    >
 
     <EditText
         android:layout_width="250dp"
@@ -35,7 +35,7 @@
         android:layout_below="@+id/logpass_field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        android:textSize="24dp"
+        android:textSize="20dp"
 
         android:paddingTop="15dp"
         android:textColor="#ffffff"
@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:id="@+id/reg_here"
+        android:clickable="true"
         android:textSize="14dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

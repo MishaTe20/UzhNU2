@@ -1,15 +1,13 @@
-package com.example.mishate.InTime;
+package com.example.mishate.uznuintime;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.mishate.uznuintime.R;
-
-public class call_schedule extends AppCompatActivity {
+public class call_shedule extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.call_schedule);
+        setContentView(R.layout.activity_call_shedule);
     }
 }

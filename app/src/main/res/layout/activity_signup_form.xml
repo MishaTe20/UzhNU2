@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_signup_form"
     android:layout_width="match_parent"
@@ -11,10 +10,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@color/background"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mishate.uznuintime.com.example.mishate.InTime.Signup_form">
+    >
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
@@ -28,7 +27,7 @@
         android:layout_alignStart="@+id/email_field" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:inputType="textEmailAddress"
         android:ems="10"
@@ -42,40 +41,58 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Вже зареєстровані?"
+        android:text="Забули пароль?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:id="@+id/log_here"
         android:textSize="14dp"
+        android:clickable="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp" />
+        android:layout_centerHorizontal="true" />
+
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
         app:srcCompat="@drawable/uzhnu_logo"
-        android:layout_marginTop="50dp"
         android:id="@+id/imageView5"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/email_field" />
+        android:layout_alignStart="@+id/email_field"
+        android:layout_height="240dp" />
 
     <Button
-        android:text="Реєстрація"
+        android:text="Вхід"
         android:elevation="6dp"
         android:stateListAnimator="@null"
-        android:translationZ="4dp"
+        android:translationZ="5dp"
         android:layout_height="55dp"
-        android:id="@+id/btn_reg"
-        android:layout_width="230dp"
+        android:id="@+id/login_btn"
         android:textColor="#ffffff"
-        android:textSize="24dp"
+        android:textSize="20dp"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:paddingTop="15dp"
+        android:paddingTop="10dp"
         android:textAllCaps="false"
+        android:layout_width="150dp"
+        android:layout_marginStart="13dp"
+        android:layout_alignTop="@+id/btn_reg"
+        android:layout_alignParentStart="true" />
+
+    <Button
+    android:text="Реєстрація"
+    android:elevation="6dp"
+    android:stateListAnimator="@null"
+    android:translationZ="5dp"
+    android:layout_height="55dp"
+    android:id="@+id/btn_reg"
+    android:textColor="#ffffff"
+    android:textSize="20dp"
+    style="@style/Widget.AppCompat.Button.Colored"
+    android:paddingTop="10dp"
+    android:textAllCaps="false"
+    android:layout_marginBottom="15dp"
+    android:layout_width="150dp"
         android:layout_above="@+id/log_here"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp" />
 
 </RelativeLayout>

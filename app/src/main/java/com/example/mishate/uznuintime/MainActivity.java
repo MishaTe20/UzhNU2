@@ -1,4 +1,4 @@
-package com.example.mishate.InTime;
+package com.example.mishate.uznuintime;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-import com.example.mishate.uznuintime.R;
+
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
     public void onClick1(View vv) {
         Intent i1;
-        i1 = new Intent(this, call_schedule.class);
+        i1 = new Intent(this, Signup_form.class);
         startActivity(i1);
     }
 }
