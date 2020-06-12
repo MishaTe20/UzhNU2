@@ -3,39 +3,36 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/calendar"
+            android:title="Розклад занять" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_teaching"
+            android:icon="@drawable/teaching"
+            android:title="Облік педнавантаження" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_shedule"
+            android:icon="@drawable/call"
             android:title="@string/shedule" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/note"
             android:title="@string/notes" />
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/settings"
+            android:title="@string/tools" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/help"
+            android:title="@string/help" />
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/logout"
+            android:title="@string/exit" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_tools"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/tools" />
 
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/help" />
-            <item
-                android:id="@+id/nav_exit"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/exit" />
-        </menu>
-    </item>
 
 </menu>

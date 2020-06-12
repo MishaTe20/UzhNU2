@@ -1,6 +1,11 @@
 package com.example.mishate.uznuintime;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,22 +13,51 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import static com.example.mishate.uznuintime.Signup_form.user;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import com.example.mishate.uznuintime.R;
 
 import java.util.ArrayList;
 
 public class profile_page extends AppCompatActivity {
+    private String name_facult;
+    private String name_caf;
+    Button save;
+    EditText name_teacher;
 
     ArrayAdapter<String> cafedra_adapter;
-
+    private DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
+    public static String user;
+private Spinner spinner;
+    private Spinner spinner_caf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
-        Spinner spinner = (Spinner) findViewById(R.id.facult);
-        final Spinner spinner_caf = (Spinner) findViewById(R.id.cafedra);
+
+       spinner = (Spinner) findViewById(R.id.facult);
+       spinner_caf = (Spinner) findViewById(R.id.cafedra);
+        name_teacher = (EditText) findViewById(R.id.fullname);
+        save = (Button) findViewById(R.id.save_profile);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+                startActivity(new Intent(getApplicationContext(), teacher_page.class));
+            }
+        });
 
         ArrayList<String> faculty = new ArrayList<>();
         faculty.add(0, "Факультет");
@@ -50,13 +84,13 @@ public class profile_page extends AppCompatActivity {
         faculty.add(21, "Кафедра військової підготовки");
 
 
-        ArrayAdapter <String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, faculty);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, faculty);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
 
 
-            ///CAFEDRA
+        ///CAFEDRA
 
         final ArrayList<String> biology = new ArrayList<>();
         biology.add("Кафедра ботаніки");
@@ -83,7 +117,6 @@ public class profile_page extends AppCompatActivity {
         ingener.add("Кафедра приладобудування");
         ingener.add("Кафедра міського будівництва і господарства");
         ingener.add("Кафедра електронних систем");
-
 
 
         final ArrayList<String> medical = new ArrayList<>();
@@ -180,7 +213,6 @@ public class profile_page extends AppCompatActivity {
         postgraduate_preuniver.add("Навчально-науковий тренінговий центр сімейної медицини та долікарської допомоги");
 
 
-
         final ArrayList<String> social_sciences = new ArrayList<>();
         social_sciences.add("Кафедра філософії");
         social_sciences.add("Кафедра психології");
@@ -231,105 +263,79 @@ public class profile_page extends AppCompatActivity {
         law.add("Кафедра міжнародного права");
 
 
-
         final ArrayList<String> army = new ArrayList<>();
         army.add("Кафедра військової підготовки");
 
 
-
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if(position == 0)
-                {
+                if (position == 0) {
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item);
 
-                }
-                else if(position == 1) {
+                } else if (position == 1) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, biology);
-                }
-                else if(position == 2) {
+                } else if (position == 2) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, geography);
-                }
-                else if(position == 3) {
+                } else if (position == 3) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, econom);
-                }
-                else if(position == 4) {
+                } else if (position == 4) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, ingener);
-                }
-                else if(position == 5) {
+                } else if (position == 5) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, medical);
-                }
-                else if(position == 6) {
+                } else if (position == 6) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, medical_2);
-                }
-                else if(position == 7) {
+                } else if (position == 7) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, stomat);
-                }
-                else if(position == 8) {
+                } else if (position == 8) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, health);
-                }
-                else if(position == 9) {
+                } else if (position == 9) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, foreign);
-                }
-                else if(position == 10) {
+                } else if (position == 10) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, infotech);
-                }
-                else if(position == 11) {
+                } else if (position == 11) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, history_inter_relations);
-                }
-                else if(position == 12) {
+                } else if (position == 12) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, math_tech);
-                }
-                else if(position == 13) {
+                } else if (position == 13) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, inter_econom_relations);
-                }
-                else if(position == 14) {
+                } else if (position == 14) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, postgraduate_preuniver);
-                }
-                else if(position == 15) {
+                } else if (position == 15) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, social_sciences);
-                }
-                else if(position == 16) {
+                } else if (position == 16) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, tourism_inter_com);
-                }
-                else if(position == 17) {
+                } else if (position == 17) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, physics);
-                }
-                else if(position == 18) {
+                } else if (position == 18) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, philology);
-                }
-                else if(position == 19) {
+                } else if (position == 19) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, chemistry);
-                }
-                else if(position == 20) {
+                } else if (position == 20) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, law);
-                }
-                else if(position == 21) {
+                } else if (position == 21) {
 
                     cafedra_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, army);
                 }
@@ -339,6 +345,7 @@ public class profile_page extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -346,26 +353,40 @@ public class profile_page extends AppCompatActivity {
         });
 
 
+    }
+
+    public void save() {
+        name_facult = spinner.getSelectedItem().toString();
+        name_caf = spinner_caf.getSelectedItem().toString();
+        final String name = name_teacher.getText().toString();
 
 
 
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(profile_page.this, "Введіть ім'я", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (name_facult.equals("select")) {
+            Toast.makeText(this, "Виберіть факультет", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (name_caf.equals("select")) {
+            Toast.makeText(this, "Виберіть кафедру", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser().getUid();
+        databaseReference=FirebaseDatabase.getInstance().getReference("teachers");
+        DatabaseReference uzhnu=databaseReference.child(mAuth.getCurrentUser().getUid());
+        uzhnu.child("email").setValue(user).toString();
+        uzhnu.child("facult").setValue(name_facult);
+        uzhnu.child("cafedra").setValue(name_caf);
+        uzhnu.child("fullname").setValue(name);
+        Toast.makeText(profile_page.this, "Збережено", Toast.LENGTH_SHORT).show();
 
     }
+
 }

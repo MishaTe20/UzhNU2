@@ -108,7 +108,6 @@ public class login_form extends AppCompatActivity {
                                               startActivity(myIntent);
 
 
-
                                           }
                                       }
         );

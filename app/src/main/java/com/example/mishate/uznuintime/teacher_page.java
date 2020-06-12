@@ -1,5 +1,7 @@
 package com.example.mishate.uznuintime;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,9 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class teacher_page extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +29,7 @@ public class teacher_page extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,27 +61,52 @@ public class teacher_page extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_calendar) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_teaching) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_shedule) {
 
             Intent i;
             i = new Intent(this, call_shedule.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_notes) {
+
+
+        }else if (id == R.id.nav_tools) {
+
 
         }else if (id == R.id.nav_help) {
 
         }
         else if (id == R.id.nav_exit) {
 
+            showExitDialog();
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showExitDialog() {
+        new AlertDialog.Builder(this).setMessage("Ви впевнені, що хочете вийти?")
+                .setPositiveButton("Так", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), Signup_form.class));
+                        
+                    }
+                })
+                .setNegativeButton("Ні", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                    }
+                })
+                .show();
     }
 }

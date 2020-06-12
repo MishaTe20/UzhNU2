@@ -16,30 +16,32 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class Signup_form extends AppCompatActivity {
-
+    private DatabaseReference databaseReference;
   private FirebaseAuth mAuth;
    FirebaseAuth.AuthStateListener mAuthListener;
-
+    public static String user;
     EditText et_email;
     EditText et_password;
     Button regBtn;
     Button login;
     TextView login_page;
     GoogleApiClient client;
-
+    String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
 
-        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
+                FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
@@ -61,8 +63,8 @@ public class Signup_form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = et_email.getText().toString().trim();
-                String password = et_password.getText().toString().trim();
+                 email = et_email.getText().toString().trim();
+                 password = et_password.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)) {
                     et_email.setError("Введіть електронну пошту.");
@@ -78,14 +80,16 @@ public class Signup_form extends AppCompatActivity {
                     et_password.setError("Пароль має містити більше 6 символів");
                     return;
                 }
-
+                mAuth=FirebaseAuth.getInstance();
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()) {
+
                             Toast.makeText(Signup_form.this, "Реєстрація успішна", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
                         }
                         else
                         {
@@ -102,9 +106,8 @@ public class Signup_form extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String email = et_email.getText().toString().trim();
-                String password = et_password.getText().toString().trim();
+                final String email = et_email.getText().toString().trim();
+                final String password = et_password.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)) {
                     et_email.setError("Введіть електронну пошту.");
@@ -121,17 +124,20 @@ public class Signup_form extends AppCompatActivity {
                     return;
                 }
 
+                mAuth=FirebaseAuth.getInstance();
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if(task.isSuccessful()) {
+                            user = email;
+                            finishAfterTransition();
                             Toast.makeText(Signup_form.this, "Авторизація успішна", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(Signup_form.this,teacher_page.class));
                         }
                         else
                         {
-                            Toast.makeText(Signup_form.this, "Помилка!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(Signup_form.this, "Неправильний email/пароль" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             et_email.setText(null);
                             et_password.setText(null);
 
@@ -149,7 +155,7 @@ public class Signup_form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(v.getContext(), teacher_page.class);
+                Intent myIntent = new Intent(v.getContext(), reset_password.class);
                 startActivity(myIntent);
 
 
