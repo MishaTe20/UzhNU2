@@ -7,7 +7,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_weight="2"
+        android:layout_width="25dp"
+        android:layout_height="match_parent" />
     <include
         layout="@layout/app_bar_teacher_bar"
         android:layout_width="match_parent"

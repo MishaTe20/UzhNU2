@@ -2,6 +2,12 @@
     <string name="app_name">UzhNU.InTime</string>
     <string name="title_activity_email_password_activity">Реєстрація</string>
 
+    <string name="activity_title_home">Нотатки</string>
+    <string name="msg_no_notes">Не знайдено!</string>
+    <string name="lbl_new_note_title">Нова</string>
+    <string name="lbl_edit_note_title">Редагувати</string>
+    <string name="hint_enter_note">Введіть нотатку</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -28,4 +34,33 @@
     <string name="notes">Нотатки</string>
     <string name="tools">Налаштування</string>
     <string name="teacher_uzhnu">Викладач УжНУ</string>
+    <string name="async_error">Error</string>
+    <string name="monday">monday</string>
+    <string name="tuesday">tuesday</string>
+    <string name="wednesday">wednesday</string>
+    <string name="thursday">thursday</string>
+    <string name="friday">friday</string>
+    <string name="saturday">saturday</string>
+    <string name="sunday">sunday</string>
+    <string name="subject">subject</string>
+    <string name="room">room</string>
+    <string name="teacher">Group</string>
+    <string name="choose_time">choose_time</string>
+    <string name="subject_dialog">subject_dialog</string>
+    <string name="select_time">select_time</string>
+    <string name="time_to_dialog">time_to_dialog</string>
+    <string name="save">save</string>
+    <string name="cancel">cancel</string>
+    <string name="select_color">select_color</string>
+    <string name="time_from_dialog">time_from_dialog</string>
+    <string name="room_dialog">room_dialog</string>
+    <string name="teacher_dialog">teacher_dialog</string>
+    <string name="time">time</string>
+    <string name="edit_subject">edit_subject</string>
+    <string name="add_subject">add_subject</string>
+    <string name="field_error">field_error</string>
+    <string name="selected">selected</string>
+    <string name="delete">delete</string>
+
+
 </resources>

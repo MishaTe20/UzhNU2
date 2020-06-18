@@ -30,11 +30,14 @@ import java.util.ArrayList;
 public class profile_page extends AppCompatActivity {
     private String name_facult;
     private String name_caf;
+    private String name;
     Button save;
     EditText name_teacher;
 
     ArrayAdapter<String> cafedra_adapter;
-    private DatabaseReference databaseReference;
+    DatabaseReference databaseReference;
+    FirebaseDatabase uzhnu;
+    teacher teacher;
     private FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     public static String user;
@@ -45,7 +48,9 @@ private Spinner spinner;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
-
+        teacher = new teacher();
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("teacher");
+        mAuth=FirebaseAuth.getInstance();
        spinner = (Spinner) findViewById(R.id.facult);
        spinner_caf = (Spinner) findViewById(R.id.cafedra);
         name_teacher = (EditText) findViewById(R.id.fullname);
@@ -358,8 +363,7 @@ private Spinner spinner;
     public void save() {
         name_facult = spinner.getSelectedItem().toString();
         name_caf = spinner_caf.getSelectedItem().toString();
-        final String name = name_teacher.getText().toString();
-
+        name = name_teacher.getText().toString().trim();
 
 
         if (TextUtils.isEmpty(name)) {
@@ -376,15 +380,11 @@ private Spinner spinner;
             return;
         }
 
-
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser().getUid();
-        databaseReference=FirebaseDatabase.getInstance().getReference("teachers");
-        DatabaseReference uzhnu=databaseReference.child(mAuth.getCurrentUser().getUid());
-        uzhnu.child("email").setValue(user).toString();
-        uzhnu.child("facult").setValue(name_facult);
-        uzhnu.child("cafedra").setValue(name_caf);
-        uzhnu.child("fullname").setValue(name);
+        teacher.setEmail(mAuth.getCurrentUser().getUid());
+        teacher.setFacult(name_facult);
+        teacher.setCafedra(name_caf);
+        teacher.setFullname(name);
+        databaseReference.push().setValue(teacher);
         Toast.makeText(profile_page.this, "Збережено", Toast.LENGTH_SHORT).show();
 
     }

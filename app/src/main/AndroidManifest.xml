@@ -21,16 +21,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
         <activity android:name=".profile_page" />
-        <activity android:name=".Signup_form">
+        <activity
+            android:name=".Signup_form"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".reset_password" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -44,7 +43,25 @@
         <activity
             android:name=".teacher_page"
             android:label="@string/title_activity_teacher_bar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".help" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.exportcsv.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity android:name=".timatable" />
+        <activity android:name=".Notes">
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        </activity>
+
     </application>
 
 </manifest>

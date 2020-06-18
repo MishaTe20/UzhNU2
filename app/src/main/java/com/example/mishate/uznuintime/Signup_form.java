@@ -15,9 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Signup_form extends AppCompatActivity {
@@ -38,21 +36,6 @@ public class Signup_form extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-
-
-                } else {
-
-
-                }
-            }
-        };
 
         et_email = (EditText) findViewById(R.id.email_field);
         et_password = (EditText) findViewById(R.id.password_field);
@@ -88,7 +71,7 @@ public class Signup_form extends AppCompatActivity {
                         if(task.isSuccessful()) {
 
                             Toast.makeText(Signup_form.this, "Реєстрація успішна", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), profile_page.class));
 
                         }
                         else

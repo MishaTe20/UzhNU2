@@ -62,8 +62,14 @@ public class teacher_page extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_calendar) {
-            // Handle the camera action
+            Intent sheduleTeach;
+            sheduleTeach = new Intent(this, timatable.class);
+            startActivity(sheduleTeach);
         } else if (id == R.id.nav_teaching) {
+
+            Intent shedule;
+            shedule = new Intent(this, timatable.class);
+            startActivity(shedule);
 
         } else if (id == R.id.nav_shedule) {
 
@@ -72,13 +78,17 @@ public class teacher_page extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.nav_notes) {
-
+            Intent notes;
+            notes = new Intent(this, Notes.class);
+            startActivity(notes);
 
         }else if (id == R.id.nav_tools) {
 
 
         }else if (id == R.id.nav_help) {
-
+            Intent sendMessage;
+            sendMessage = new Intent(this, help.class);
+            startActivity(sendMessage);
         }
         else if (id == R.id.nav_exit) {
 
@@ -99,7 +109,7 @@ public class teacher_page extends AppCompatActivity
                     public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
                         mAuth.signOut();
                         startActivity(new Intent(getApplicationContext(), Signup_form.class));
-                        
+
                     }
                 })
                 .setNegativeButton("Ні", new DialogInterface.OnClickListener()
