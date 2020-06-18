@@ -52,7 +52,6 @@ android:theme="@style/AppTheme.NoActionBar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-
     <Button
         android:text="Вхід"
         android:elevation="6dp"
